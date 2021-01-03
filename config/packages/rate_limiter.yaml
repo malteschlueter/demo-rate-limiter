@@ -1,0 +1,12 @@
+framework:
+    rate_limiter:
+        anonymous:
+            policy: 'sliding_window'
+            limit: 10
+            interval: '1 minute'
+            cache_pool: 'app.rate_limiter'
+        authenticated:
+            policy: 'token_bucket'
+            limit: 50
+            rate: { interval: '2 minutes', amount: 25 }
+            cache_pool: 'app.rate_limiter'
